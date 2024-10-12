@@ -77,16 +77,21 @@ document.querySelector('#open-popup').addEventListener('click', popup);
 // }
 
 function submitBookDetails() {
-  
-
-
+  let popupNode = document.querySelector('#popup');
   let bookTitle = document.querySelector('#name');
+  
   if (bookTitle.value){
     let newBookAdded = new Book(bookTitle.value);
     addBookToLibrary(newBookAdded);
     displayBook(newBookAdded);
+    bookTitle.value = '';
+    popupNode.classList.remove('active');
   }
   
+  popupNode.classList.remove('active');
+ 
+  
+
   //need to close modal on clicking submit
 }
 

@@ -6,11 +6,18 @@ const addBook = document.querySelector('button');
 
 const bookName = document.querySelector('#name');
 
+//data attribute for remove button association
+let bookNumber;
+
+//test button reference
+const removeBtn = document.querySelector('.remove')
+
 function Book(title, author, pageCount, readOrNot){
   this.title = title,
   this.author = author,
   this.pageCount = pageCount,
   this.readOrNot = readOrNot,
+  this.bookIndex = myLibrary.length,
   readStatus = () => {
     if (readOrNot) {
       return 'read already'
@@ -26,8 +33,14 @@ function Book(title, author, pageCount, readOrNot){
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
-
+  
 }
+
+function removeBook(){
+  myLibrary.pop();
+  console.log('cancel pressed')
+}
+removeBtn.addEventListener('click', removeBook)
 
 function displayBook(newBook) {
   //display all the test entries for books
@@ -39,8 +52,12 @@ function displayBook(newBook) {
   // })
   //display each book 
   let newListItem = document.createElement('li');
+  //test add button
+  let itemCancelBtn = document.createElement('button');
   newListItem.textContent = `${newBook.title} by ${newBook.author}`
+  itemCancelBtn.textContent = 'Remove';
   myShelf.appendChild(newListItem);
+  newListItem.appendChild(itemCancelBtn);
 }
  
 
@@ -84,6 +101,7 @@ function submitBookDetails() {
     let newBookAdded = new Book(bookTitle.value);
     addBookToLibrary(newBookAdded);
     displayBook(newBookAdded);
+    
     bookTitle.value = '';
     popupNode.classList.remove('active');
   }

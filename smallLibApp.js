@@ -56,6 +56,7 @@ function displayBook(newBook) {
   let itemCancelBtn = document.createElement('button');
   newListItem.textContent = `${newBook.title} by ${newBook.author}`
   itemCancelBtn.textContent = 'Remove';
+  itemCancelBtn.classList.add('remove');
   myShelf.appendChild(newListItem);
   newListItem.appendChild(itemCancelBtn);
 }

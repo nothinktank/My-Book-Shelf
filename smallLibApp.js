@@ -88,7 +88,7 @@ function submitBookDetails() {
     popupNode.classList.remove('active');
   }
   
-  popupNode.classList.remove('active');
+  // popupNode.classList.remove('active');
  
   
 

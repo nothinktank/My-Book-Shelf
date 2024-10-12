@@ -48,14 +48,6 @@ function displayBook(newBook) {
 // let sorcererStone = new Book('HarryPotter1', 'JK Rowling');
 // let gobletOfFire = new Book('HarryPotter2', 'JK Rowling');
 
-// addBookToLibrary(poorDadRichDad);
-// addBookToLibrary(sorcererStone);
-// addBookToLibrary(gobletOfFire);
-
-// console.log(myLibrary);
-
-// displayBook(myLibrary);
-
 
 //create a popup modal
 function createPopup(id){
@@ -85,13 +77,17 @@ document.querySelector('#open-popup').addEventListener('click', popup);
 // }
 
 function submitBookDetails() {
+  
+
+
   let bookTitle = document.querySelector('#name');
-  let newBookAdded = new Book(bookTitle.value);
-  addBookToLibrary(newBookAdded);
-  displayBook(newBookAdded);
-  // console.log(bookTitle.value);
-  // console.log('submit')
-  // return newBookAdded;
+  if (bookTitle.value){
+    let newBookAdded = new Book(bookTitle.value);
+    addBookToLibrary(newBookAdded);
+    displayBook(newBookAdded);
+  }
+  
+  //need to close modal on clicking submit
 }
 
 

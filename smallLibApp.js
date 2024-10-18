@@ -60,12 +60,12 @@ function displayBook(newBook) {
     console.log(boolean())
 
     newListItem.textContent = `${newBook.title} by ${newBook.author}, it has ${newBook.pageCount} pages.`;
-    read.textContent = newBook.readOrNot;
+    read.textContent = (boolean()) ? "Read it" : "Still need to read this";
     newListItem.dataset.identifier = myLibrary.length;
     itemCancelBtn.textContent = 'Remove';
     itemCancelBtn.classList.add('remove');
     itemCancelBtn.dataset.identifier = myLibrary.length;
-    readButton.textContent = (boolean()) ? 'I have read it' : "I haven't read it";
+    readButton.textContent = (boolean()) ? "I haven't read it"  : 'I have read it';
     readButton.classList.add('status');
     myShelf.appendChild(newListItem);
     newListItem.appendChild(read);
@@ -90,8 +90,10 @@ function displayBook(newBook) {
   readButton.addEventListener('click', () => {
     if (readButton.textContent === 'I have read it'){
       readButton.textContent = "I haven't read it";
+      read.textContent = 'Read it';
     } else {
       readButton.textContent = 'I have read it';
+      read.textContent = 'Still Need to read it';
     }
   } )
   

@@ -88,12 +88,19 @@ function displayBook(newBook) {
   })
 
   readButton.addEventListener('click', () => {
-    if (readButton.textContent === 'I have read it'){
-      readButton.textContent = "I haven't read it";
-      read.textContent = 'Read it';
-    } else {
-      readButton.textContent = 'I have read it';
-      read.textContent = 'Still Need to read it';
+    
+    for (let i = myLibrary.length - 1; i >= 0; --i){
+      if (myLibrary[i].identifier == itemId){
+        if (readButton.textContent === 'I have read it'){
+          readButton.textContent = "I haven't read it";
+          read.textContent = 'Read it';
+          myLibrary[i].readOrNot = 'Y'
+        } else {
+          readButton.textContent = 'I have read it';
+          read.textContent = 'Still Need to read it';
+          myLibrary[i].readOrNot = 'N'
+        }
+      }
     }
   } )
   

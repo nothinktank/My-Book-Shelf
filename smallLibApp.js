@@ -50,7 +50,14 @@ function displayBook(newBook) {
     let itemCancelBtn = document.createElement('button');
     let read = document.createElement('span');
     let readButton = document.createElement('button');
-    
+    let boolean = () => {
+      if (newBook.readOrNot === 'Y') {
+        return true;
+      }else {
+        return false;
+      }
+    }
+    console.log(boolean())
 
     newListItem.textContent = `${newBook.title} by ${newBook.author}, it has ${newBook.pageCount} pages.`;
     read.textContent = newBook.readOrNot;
@@ -58,7 +65,7 @@ function displayBook(newBook) {
     itemCancelBtn.textContent = 'Remove';
     itemCancelBtn.classList.add('remove');
     itemCancelBtn.dataset.identifier = myLibrary.length;
-    readButton.textContent = 'I have read it';
+    readButton.textContent = (boolean()) ? 'I have read it' : "I haven't read it";
     readButton.classList.add('status');
     myShelf.appendChild(newListItem);
     newListItem.appendChild(read);

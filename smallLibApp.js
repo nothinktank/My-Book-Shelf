@@ -48,13 +48,22 @@ function displayBook(newBook) {
   
     let newListItem = document.createElement('li');
     let itemCancelBtn = document.createElement('button');
-    newListItem.textContent = `${newBook.title} by ${newBook.author}`
+    let read = document.createElement('span');
+    let readButton = document.createElement('button');
+    
+
+    newListItem.textContent = `${newBook.title} by ${newBook.author}, it has ${newBook.pageCount} pages.`;
+    read.textContent = newBook.readOrNot;
     newListItem.dataset.identifier = myLibrary.length;
     itemCancelBtn.textContent = 'Remove';
     itemCancelBtn.classList.add('remove');
     itemCancelBtn.dataset.identifier = myLibrary.length;
+    readButton.textContent = 'I have read it';
+    readButton.classList.add('status');
     myShelf.appendChild(newListItem);
+    newListItem.appendChild(read);
     newListItem.appendChild(itemCancelBtn);
+    newListItem.appendChild(readButton);
     let itemId = newListItem.getAttribute('data-identifier');
     
   
@@ -70,6 +79,14 @@ function displayBook(newBook) {
       }
     }
   })
+
+  readButton.addEventListener('click', () => {
+    if (readButton.textContent === 'I have read it'){
+      readButton.textContent = "I haven't read it";
+    } else {
+      readButton.textContent = 'I have read it';
+    }
+  } )
   
 }
  
@@ -106,14 +123,20 @@ document.querySelector('#open-popup').addEventListener('click', popup);
 function submitBookDetails() {
   let popupNode = document.querySelector('#popup');
   let bookTitle = document.querySelector('#name');
+  let author = document.querySelector('#author');
+  let pageCount = document.querySelector('#pageCount');
+  let readOrNot = document.querySelector('#readOrNot');
   
   if (bookTitle.value){
-    let newBookAdded = new Book(bookTitle.value);
+    let newBookAdded = new Book(bookTitle.value, author.value, pageCount.value, readOrNot.value);
     addBookToLibrary(newBookAdded);
     displayBook(newBookAdded);
     
 
     bookTitle.value = '';
+    author.value = '';
+    pageCount.value = '';
+    readOrNot.value = '';
     popupNode.classList.remove('active');
   }
 

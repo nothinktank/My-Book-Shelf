@@ -57,7 +57,7 @@ function displayBook(newBook) {
         return false;
       }
     }
-    console.log(boolean())
+    // console.log(boolean())
 
     newListItem.textContent = `${newBook.title} by ${newBook.author}, it has ${newBook.pageCount} pages.`;
     read.textContent = (boolean()) ? "Read it" : "Still need to read this";
@@ -72,36 +72,54 @@ function displayBook(newBook) {
     newListItem.appendChild(itemCancelBtn);
     newListItem.appendChild(readButton);
     let itemId = newListItem.getAttribute('data-identifier');
+    let objectIndex = myLibrary.indexOf(newBook);
     
-  
+    // console.log(objectIndex);
+
   itemCancelBtn.addEventListener('click', (e) => {
     console.log(`number ${itemId} remove button pressed`);
+    myLibrary.splice(objectIndex, 1);
     myShelf.removeChild(newListItem);
-    const libraryIndex = itemId - 1;
-    for (let i = myLibrary.length - 1; i >= 0; --i){
-      console.log(myLibrary[i].identifier);
-      console.log(itemId);
-      if (myLibrary[i].identifier == itemId){
-        myLibrary.splice(i, 1);
-      }
-    }
+    
+    //loop to check for the correct object item in the array
+    // for (let i = myLibrary.length - 1; i >= 0; --i){
+    //   // console.log(myLibrary[i].identifier);
+    //   // console.log(itemId);
+    //   if (myLibrary[i].identifier == itemId){
+    //     myLibrary.splice(i, 1);
+    //   }
+    // }
   })
 
   readButton.addEventListener('click', () => {
-    
-    for (let i = myLibrary.length - 1; i >= 0; --i){
-      if (myLibrary[i].identifier == itemId){
-        if (readButton.textContent === 'I have read it'){
-          readButton.textContent = "I haven't read it";
-          read.textContent = 'Read it';
-          myLibrary[i].readOrNot = 'Y'
-        } else {
-          readButton.textContent = 'I have read it';
-          read.textContent = 'Still Need to read it';
-          myLibrary[i].readOrNot = 'N'
-        }
-      }
-    }
+    let newObjectIndex = myLibrary.indexOf(newBook);
+    if (readButton.textContent === 'I have read it'){
+            myLibrary[newObjectIndex].readOrNot = 'Y'
+            readButton.textContent = "I haven't read it";
+            read.textContent = 'Read it';
+            
+          } else {
+            myLibrary[newObjectIndex].readOrNot = 'N'
+            readButton.textContent = 'I have read it';
+            read.textContent = 'Still Need to read it';
+            
+          }
+
+    // for (let i = myLibrary.length - 1; i >= 0; --i){
+    //   if (myLibrary[i].identifier == itemId){
+    //     if (readButton.textContent === 'I have read it'){
+    //       readButton.textContent = "I haven't read it";
+    //       read.textContent = 'Read it';
+    //       myLibrary[i].readOrNot = 'Y'
+    //     } else {
+    //       readButton.textContent = 'I have read it';
+    //       read.textContent = 'Still Need to read it';
+    //       myLibrary[i].readOrNot = 'N'
+    //     }
+    //   }
+    // }
+
+
   } )
   
 }

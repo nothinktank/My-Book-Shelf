@@ -48,7 +48,7 @@ function displayBook(newBook) {
   
     let newListItem = document.createElement('li');
     let itemCancelBtn = document.createElement('button');
-    let read = document.createElement('span');
+    let read = document.createElement('div');
     let readButton = document.createElement('button');
     let boolean = () => {
       if (newBook.readOrNot === 'Y') {

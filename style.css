@@ -106,3 +106,19 @@ body {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
+
+.flex-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* gap: 10px; */
+}
+
+/* .form-textbox, .form-textarea, form-radio-other-input, .form-checkbox-other-input, .form-captcha input, .form-spinner input{
+  border: 1px solid #CCCCCC !important;
+} */
+
+input {
+  border: 1px solid #CCCCCC !important;
+  height: 25px;
+}

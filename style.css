@@ -6,14 +6,32 @@ box-sizing: border-box;
 
 body {
   font-family:"Roboto", sans-serif;
+  background-color: antiquewhite;
 }
 
+.header {
+  font-family:"Times New Roman", sans-serif;
+  background-color: antiquewhite;
+  padding: 20px;
+  text-align: center;
+  font-size: xx-large;
+  color: #3284ed;
+
+  display: grid;
+  grid-template-rows: fr fr fr fr fr;
+}
+
+.title {
+  grid-column: 3 / 4 ;
+  /* grid-row:0 ; */
+}
 .center{
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
+  transform: translate(-50%, -50%); */
+  grid-column: 5 / 6;
+  /* grid-row: ; */
 }
 
 .popup{

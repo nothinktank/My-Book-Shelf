@@ -6,12 +6,12 @@ box-sizing: border-box;
 
 body {
   font-family:"Roboto", sans-serif;
-  background-color: antiquewhite;
+  background-color: white;
 }
 
 .header {
-  font-family:"Times New Roman", sans-serif;
-  background-color: antiquewhite;
+  font-family:"Copperplate", fantasy;
+  background-color: white;
   padding: 20px;
   text-align: center;
   font-size: xx-large;
@@ -22,7 +22,8 @@ body {
 }
 
 .title {
-  grid-column: 3 / 4 ;
+  grid-column: 1 / 2 ;
+  font-weight: bold;
   /* grid-row:0 ; */
 }
 .center{
@@ -139,4 +140,22 @@ body {
 input {
   border: 1px solid #CCCCCC !important;
   height: 25px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+li {
+  margin: 10px;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+.myShelf li div {
+  margin: 10px 0px;
 }

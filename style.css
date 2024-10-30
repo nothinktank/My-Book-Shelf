@@ -19,6 +19,9 @@ body {
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+  position: sticky;
+  top: 0px;
 }
 
 .title {

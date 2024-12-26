@@ -17,6 +17,7 @@ let bookNumber;
 // let removeBtnList = document.querySelectorAll('.remove');
 // const removeBtn = document.querySelector(`[data-identifier = ${CSS.escape(myLibrary.length)}]`);
 
+//function that creates a new book object
 // function Book(title, author, pageCount, readOrNot){
 //   this.title = title,
 //   this.author = author,
@@ -36,6 +37,9 @@ let bookNumber;
 //   }
 
 // }
+
+//class that creates a new book object
+
 class Book {
   constructor (title, author, pageCount, readOrNot) {
     this.title = title;

@@ -17,24 +17,47 @@ let bookNumber;
 // let removeBtnList = document.querySelectorAll('.remove');
 // const removeBtn = document.querySelector(`[data-identifier = ${CSS.escape(myLibrary.length)}]`);
 
-function Book(title, author, pageCount, readOrNot){
-  this.title = title,
-  this.author = author,
-  this.pageCount = pageCount,
-  this.readOrNot = readOrNot,
-  this.identifier = myLibrary.length + 1,
-  // this.bookIndex = myLibrary.length,
+//function that creates a new book object
+// function Book(title, author, pageCount, readOrNot){
+//   this.title = title,
+//   this.author = author,
+//   this.pageCount = pageCount,
+//   this.readOrNot = readOrNot,
+//   this.identifier = myLibrary.length + 1,
+//   // this.bookIndex = myLibrary.length,
+//   readStatus = () => {
+//     if (readOrNot) {
+//       return 'read already'
+//     } else {
+//       return 'not read yet'
+//     }
+//   } ,
+//   infoReport = () => {
+//     console.log( `${title} by ${author}, ${pageCount} pages, ${readStatus()}`)
+//   }
+
+// }
+
+//class that creates a new book object
+
+class Book {
+  constructor (title, author, pageCount, readOrNot) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.readOrNot = readOrNot;
+    this.identifier = myLibrary.length + 1;
+  }
   readStatus = () => {
     if (readOrNot) {
       return 'read already'
     } else {
       return 'not read yet'
     }
-  } ,
+  }
   infoReport = () => {
     console.log( `${title} by ${author}, ${pageCount} pages, ${readStatus()}`)
   }
-
 }
 
 function addBookToLibrary(newBook) {

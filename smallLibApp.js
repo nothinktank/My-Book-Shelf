@@ -59,7 +59,6 @@ class Book {
     console.log( `${title} by ${author}, ${pageCount} pages, ${readStatus()}`)
   }
 }
-
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
   

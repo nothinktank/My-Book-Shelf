@@ -2,7 +2,8 @@
 // let poorDadRichDad = new Book('poorDadRichDad', 'robert Kiyosaki');
 // let sorcererStone = new Book('HarryPotter1', 'JK Rowling');
 // let gobletOfFire = new Book('HarryPotter2', 'JK Rowling');
-const myLibrary = [];
+
+// const myLibrary = [];
 
 const myShelf = document.querySelector(".myShelf");
 
@@ -41,13 +42,24 @@ let bookNumber;
 //class that creates a new book object
 
 class Book {
-  constructor (title, author, pageCount, readOrNot) {
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.readOrNot = readOrNot;
-    this.identifier = myLibrary.length + 1;
+  myLibrary = new Array();
+  constructor (){}
+
+  // constructor (title, author, pageCount, readOrNot) {
+  //   this.title = title;
+  //   this.author = author;
+  //   this.pageCount = pageCount;
+  //   this.readOrNot = readOrNot;
+  //   this.identifier = myLibrary.length + 1;
+  // }
+  addBook (title, author, pageCount, readOrNot){
+    this.myLibrary.push({title, author, pageCount, readOrNot});
   }
+
+  getBookList () {
+    return this.myLibrary;
+  }
+
   readStatus = () => {
     if (readOrNot) {
       return 'read already'
@@ -55,15 +67,44 @@ class Book {
       return 'not read yet'
     }
   }
-  infoReport = () => {
-    console.log( `${title} by ${author}, ${pageCount} pages, ${readStatus()}`)
-  }
+  // infoReport = () => {
+  //   console.log( `${title} by ${author}, ${pageCount} pages, ${readStatus()}`)
+  // }
 }
 
-function addBookToLibrary(newBook) {
-  myLibrary.push(newBook);
+function submitBookDetails() {
+  //create a new instance of Book class if none is created
+  if (!newLibrary) {
+    let newLibrary = new Book();
+  }
+
+  let popupNode = document.querySelector('#popup');
+  let bookTitle = document.querySelector('#name');
+  let author = document.querySelector('#author');
+  let pageCount = document.querySelector('#pageCount');
+  let readOrNot = document.querySelector('#readOrNot');
   
+  if (bookTitle.value){
+    newLibrary.addBook(bookTitle.value, author.value, pageCount.value, readOrNot.value)
+    // let newBookAdded = new Book(bookTitle.value, author.value, pageCount.value, readOrNot.value);
+    // addBookToLibrary(newBookAdded);
+    displayBook(newBookAdded);
+    
+
+    bookTitle.value = '';
+    author.value = '';
+    pageCount.value = '';
+    readOrNot.value = '';
+    popupNode.classList.remove('active');
+  }
 }
+//initialize a new book array and add new book 
+document.querySelector('.submit-btn').addEventListener('click', submitBookDetails);
+
+// function addBookToLibrary(newBook) {
+//   myLibrary.push(newBook);
+  
+// }
 
 
 function displayBook(newBook) {
@@ -177,27 +218,7 @@ document.querySelector('#open-popup').addEventListener('click', popup);
 // }
 
 
-function submitBookDetails() {
-  let popupNode = document.querySelector('#popup');
-  let bookTitle = document.querySelector('#name');
-  let author = document.querySelector('#author');
-  let pageCount = document.querySelector('#pageCount');
-  let readOrNot = document.querySelector('#readOrNot');
-  
-  if (bookTitle.value){
-    let newBookAdded = new Book(bookTitle.value, author.value, pageCount.value, readOrNot.value);
-    addBookToLibrary(newBookAdded);
-    displayBook(newBookAdded);
-    
 
-    bookTitle.value = '';
-    author.value = '';
-    pageCount.value = '';
-    readOrNot.value = '';
-    popupNode.classList.remove('active');
-  }
-
-}
 
 // let submit = submitBookDetails();
 document.querySelector('.submit-btn').addEventListener('click', submitBookDetails);

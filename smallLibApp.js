@@ -42,7 +42,6 @@ let bookNumber;
 
 
 //class that creates a new book object
-
 class Book {
 
   constructor (title, author, pageCount, readOrNot) {
@@ -79,6 +78,7 @@ class Library {
   constructor() {
     this.library = [];
     this.newBook = this.newBook.bind(this);
+    this.displayBook = this.displayBook.bind(this);
   }
   //create a new book and save it in the collection
   newBook() {
@@ -88,16 +88,68 @@ class Library {
     let pageCount = document.querySelector('#pageCount');
     let readOrNot = document.querySelector('#readOrNot');
 
-    // if (bookTitle.value) {
+    if (bookTitle.value) {
       let nb = new Book(bookTitle.value, author.value, pageCount.value, readOrNot.value);
       this.library.push(nb);
-    // }
+      this.displayBook(nb);
+
+
     bookTitle.value = '';
     author.value = '';
     pageCount.value = '';
     readOrNot.value = '';
     popupNode.classList.remove('active');
     // return nb;
+    }
+  }
+
+  displayBook(newBook) {
+    let newListItem = document.createElement('li');
+    let itemCancelBtn = document.createElement('button');
+    let read = document.createElement('div');
+    let readButton = document.createElement('button');
+    let boolean = () => {
+      if (newBook.readOrNot === 'Y') {
+        return true;
+      }else {
+        return false;
+      }
+    }
+    newListItem.textContent = `${newBook.title} by ${newBook.author}, it has ${newBook.pageCount} pages.`;
+    read.textContent = (boolean()) ? "Read it" : "Still need to read this";
+    // newListItem.dataset.identifier = myLibrary.length;
+    itemCancelBtn.textContent = 'Remove';
+    itemCancelBtn.classList.add('remove');
+    // itemCancelBtn.dataset.identifier = myLibrary.length;
+    readButton.textContent = (boolean()) ? "I haven't read it"  : 'I have read it';
+    readButton.classList.add('status');
+    myShelf.appendChild(newListItem);
+    newListItem.appendChild(read);
+    newListItem.appendChild(itemCancelBtn);
+    newListItem.appendChild(readButton);
+    let itemId = newListItem.getAttribute('data-identifier');
+    let objectIndex = this.library.indexOf(newBook);
+
+    itemCancelBtn.addEventListener('click', (e) => {
+      console.log(`number ${itemId} remove button pressed`);
+      this.library.splice(objectIndex, 1);
+      myShelf.removeChild(newListItem);
+    })
+    
+    readButton.addEventListener('click', () => {
+      let newObjectIndex = this.library.indexOf(newBook);
+      if (readButton.textContent === 'I have read it'){
+              this.library[newObjectIndex].readOrNot = 'Y'
+              readButton.textContent = "I haven't read it";
+              read.textContent = 'Read it';
+              
+            } else {
+              this.library[newObjectIndex].readOrNot = 'N'
+              readButton.textContent = 'I have read it';
+              read.textContent = 'Still Need to read it';
+              
+            }
+    } )
   }
 }
 
@@ -168,21 +220,11 @@ function displayBook(newBook) {
     let itemId = newListItem.getAttribute('data-identifier');
     let objectIndex = myLibrary.indexOf(newBook);
     
-    // console.log(objectIndex);
-
   itemCancelBtn.addEventListener('click', (e) => {
     console.log(`number ${itemId} remove button pressed`);
     myLibrary.splice(objectIndex, 1);
     myShelf.removeChild(newListItem);
     
-    //loop to check for the correct object item in the array
-    // for (let i = myLibrary.length - 1; i >= 0; --i){
-    //   // console.log(myLibrary[i].identifier);
-    //   // console.log(itemId);
-    //   if (myLibrary[i].identifier == itemId){
-    //     myLibrary.splice(i, 1);
-    //   }
-    // }
   })
 
   readButton.addEventListener('click', () => {
@@ -198,24 +240,7 @@ function displayBook(newBook) {
             read.textContent = 'Still Need to read it';
             
           }
-
-    // for (let i = myLibrary.length - 1; i >= 0; --i){
-    //   if (myLibrary[i].identifier == itemId){
-    //     if (readButton.textContent === 'I have read it'){
-    //       readButton.textContent = "I haven't read it";
-    //       read.textContent = 'Read it';
-    //       myLibrary[i].readOrNot = 'Y'
-    //     } else {
-    //       readButton.textContent = 'I have read it';
-    //       read.textContent = 'Still Need to read it';
-    //       myLibrary[i].readOrNot = 'N'
-    //     }
-    //   }
-    // }
-
-
-  } )
-  
+  } ) 
 }
  
 

@@ -39,26 +39,26 @@ let bookNumber;
 
 // }
 
+
+
 //class that creates a new book object
 
 class Book {
-  myLibrary = new Array();
-  constructor (){}
 
-  // constructor (title, author, pageCount, readOrNot) {
-  //   this.title = title;
-  //   this.author = author;
-  //   this.pageCount = pageCount;
-  //   this.readOrNot = readOrNot;
-  //   this.identifier = myLibrary.length + 1;
-  // }
+  constructor (title, author, pageCount, readOrNot) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.readOrNot = readOrNot;
+    // this.identifier = myLibrary.length + 1;
+  }
   addBook (title, author, pageCount, readOrNot){
     this.myLibrary.push({title, author, pageCount, readOrNot});
   }
 
-  getBookList () {
-    return this.myLibrary;
-  }
+  // getBookList () {
+  //   return this.myLibrary;
+  // }
 
   readStatus = () => {
     if (readOrNot) {
@@ -71,35 +71,65 @@ class Book {
   //   console.log( `${title} by ${author}, ${pageCount} pages, ${readStatus()}`)
   // }
 }
+//i should use getter and setter for the book array in the class above
 
-function submitBookDetails() {
-  //create a new instance of Book class if none is created
-  if (!newLibrary) {
-    let newLibrary = new Book();
+//class that manages the book collection array
+
+class Library {
+  constructor() {
+    this.library = [];
+    this.newBook = this.newBook.bind(this);
   }
+  //create a new book and save it in the collection
+  newBook() {
+    let popupNode = document.querySelector('#popup');
+    let bookTitle = document.querySelector('#name');
+    let author = document.querySelector('#author');
+    let pageCount = document.querySelector('#pageCount');
+    let readOrNot = document.querySelector('#readOrNot');
 
-  let popupNode = document.querySelector('#popup');
-  let bookTitle = document.querySelector('#name');
-  let author = document.querySelector('#author');
-  let pageCount = document.querySelector('#pageCount');
-  let readOrNot = document.querySelector('#readOrNot');
-  
-  if (bookTitle.value){
-    newLibrary.addBook(bookTitle.value, author.value, pageCount.value, readOrNot.value)
-    // let newBookAdded = new Book(bookTitle.value, author.value, pageCount.value, readOrNot.value);
-    // addBookToLibrary(newBookAdded);
-    displayBook(newBookAdded);
-    
-
+    // if (bookTitle.value) {
+      let nb = new Book(bookTitle.value, author.value, pageCount.value, readOrNot.value);
+      this.library.push(nb);
+    // }
     bookTitle.value = '';
     author.value = '';
     pageCount.value = '';
     readOrNot.value = '';
     popupNode.classList.remove('active');
+    // return nb;
   }
 }
+
+// function submitBookDetails() {
+//   //create a new instance of Book class if none is created
+//   // if (!newLibrary) {
+//   //   let newLibrary = new Book();
+//   // }
+
+//   let popupNode = document.querySelector('#popup');
+//   let bookTitle = document.querySelector('#name');
+//   let author = document.querySelector('#author');
+//   let pageCount = document.querySelector('#pageCount');
+//   let readOrNot = document.querySelector('#readOrNot');
+  
+//   if (bookTitle.value){
+//     newLibrary.addBook(bookTitle.value, author.value, pageCount.value, readOrNot.value)
+//     // let newBookAdded = new Book(bookTitle.value, author.value, pageCount.value, readOrNot.value);
+//     // addBookToLibrary(newBookAdded);
+//     displayBook(newBookAdded);
+    
+
+//     bookTitle.value = '';
+//     author.value = '';
+//     pageCount.value = '';
+//     readOrNot.value = '';
+//     popupNode.classList.remove('active');
+//   }
+// }
 //initialize a new book array and add new book 
-document.querySelector('.submit-btn').addEventListener('click', submitBookDetails);
+let newLibrary = new Library();
+document.querySelector('.submit-btn').addEventListener('click', newLibrary.newBook);
 
 // function addBookToLibrary(newBook) {
 //   myLibrary.push(newBook);
@@ -210,18 +240,6 @@ function createPopup(id){
 
 let popup = createPopup('#popup');
 document.querySelector('#open-popup').addEventListener('click', popup);
-
-// function submitBookDetails(title, author, pageCount, readOrNot) {
-//   let newBookAdded = new Book(title, author, pageCount, readOrNot);
-//   addBookToLibrary(newBookAdded);
-//   // return newBookAdded;
-// }
-
-
-
-
-// let submit = submitBookDetails();
-document.querySelector('.submit-btn').addEventListener('click', submitBookDetails);
 
 let removeBtnList = document.querySelectorAll('.remove');
 
